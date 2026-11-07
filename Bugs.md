@@ -34,7 +34,7 @@
 | BUG-10 | Cosseno chama função inexistente | Alto | Não resolvido | `Bug_cosseno_notDefined.png` |
 | BUG-11 | Tangente chama função inexistente | Alto | Não resolvido | `Bug_tang_notDefined.png` |
 | BUG-12 | Entrada não numérica encerra o programa com erro | Médio | Não resolvido | `Bug_errorNoFloat.png` |
-| BUG-13 | Importar o módulo executa a calculadora | Médio | Não resolvido | `Bug_OSError.png` |
+| BUG-13 | Importar o módulo executa a calculadora | Médio | Resolvido | `Bug_OSError.png` |
 
 ---
 
