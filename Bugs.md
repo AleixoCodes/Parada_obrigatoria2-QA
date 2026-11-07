@@ -34,6 +34,7 @@
 | BUG-10 | Cosseno chama função inexistente | Alto | Não resolvido | `Bug_cosseno_notDefined.png` |
 | BUG-11 | Tangente chama função inexistente | Alto | Não resolvido | `Bug_tang_notDefined.png` |
 | BUG-12 | Entrada não numérica encerra o programa com erro | Médio | Não resolvido | `Bug_errorNoFloat.png` |
+| BUG-13 | Importar o módulo executa a calculadora | Médio | Não resolvido | `Bug_OSError.png` |
 
 ---
 
@@ -502,4 +503,46 @@ Envolver a leitura em `try/except ValueError` e pedir o valor novamente, de pref
 
 ### Registro e acompanhamento
 - **Data de identificação:** 06/11/2026
+- **Status:** Não resolvido
+
+---
+
+## BUG-13 — Importar o módulo executa a calculadora
+
+### Identificação
+- **Título:** Importar `Calculadora.py` abre o menu e trava à espera de `input`
+- **Localização:** `Calculadora.py`, última linha (linha 108), chamada solta a `calculadora_cientifica()`
+
+### Descrição detalhada
+- **Descrição clara:** a chamada a `calculadora_cientifica()` está no nível do módulo, sem a proteção `if __name__ == "__main__":`. Por isso ela é executada sempre que o arquivo é importado, e não só quando ele é rodado diretamente. Qualquer `import Calculadora` (um teste, outro programa) abre o menu e fica esperando o usuário digitar. O módulo não pode ser reutilizado nem testado de forma automatizada.
+- **Contexto:** identificado ao rodar o pytest pela primeira vez, com um teste que faz `from Calculadora import adicao`. Executar `python Calculadora.py` diretamente não é afetado. Ver "Ambiente de teste".
+
+### Passos para reproduzir
+1. Crie o arquivo `test_calculadora.py` na mesma pasta do `Calculadora.py`, com a linha `from Calculadora import adicao`.
+2. Execute `python -m pytest -v`.
+- **Consistência:** ocorre sempre.
+
+### Resultado esperado vs. obtido
+- **Esperado:** o import só carrega as funções, e o pytest coleta e executa os testes.
+- **Obtido:** o menu da calculadora é exibido durante a coleta, e o pytest termina com `OSError: pytest: reading from stdin while output is captured!` e `1 error during collection`. Nenhum teste é executado.
+
+### Evidências
+![Bug_OSError](evidencias/Bug_OSError.png)
+
+Log de erro:
+```
+OSError: pytest: reading from stdin while output is captured!  Consider using `-s`.
+ERROR test_calculadora.py - OSError: pytest: reading from stdin while output is captured!
+Interrupted: 1 error during collection
+```
+
+### Severidade e impacto
+- **Severidade:** Médio
+- **Impacto:** não afeta quem executa a calculadora diretamente, mas impede qualquer teste automatizado e qualquer reutilização das funções em outro arquivo. Foi o primeiro obstáculo ao aplicar TDD.
+
+### Sugestões para correção (opcional)
+Proteger a chamada com `if __name__ == "__main__":`.
+
+### Registro e acompanhamento
+- **Data de identificação:** 07/11/2026
 - **Status:** Não resolvido
