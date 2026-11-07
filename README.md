@@ -24,7 +24,7 @@ O projeto parte de uma calculadora científica simples em Python (`Calculadora.p
 |---|---|
 | [`Bugs.md`](Bugs.md) | Relatório dos 13 bugs: título, localização, descrição, passos para reproduzir, resultado esperado vs. obtido, evidências, severidade, sugestão de correção, data e status. |
 | [`Correcao.md`](Correcao.md) | Como o BUG-01 foi corrigido com TDD, passo a passo, incluindo o tratamento do BUG-13 e os testes dos demais bugs. |
-| [`Reflexao_Scrum.md`](Reflexao_Scrum.md) | Reflexão sobre o processo de desenvolvimento usando o Scrum. |
+| [`Reflexao_scrum.md`](Reflexao_scrum.md) | Reflexão sobre o processo de desenvolvimento usando o Scrum. |
 | [`Calculadora.py`](Calculadora.py) | Código da calculadora científica, com as correções do BUG-01 e do BUG-13. |
 | [`test_calculadora.py`](test_calculadora.py) | Testes do BUG-01, usados no ciclo TDD. |
 | [`test_bugs_extra.py`](test_bugs_extra.py) | Testes dos bugs 02 a 12, que falham de propósito (`xfail`) enquanto os bugs existirem. |
