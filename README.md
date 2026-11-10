@@ -1,6 +1,6 @@
 # Bug Hunter & TDD Calculator
 
-Atividade **Parada Obrigatória 2** (SENAI CIMATEC), feita individualmente.
+Atividade **Parada Obrigatória 2** (SENAI CIMATEC).
 
 O projeto parte de uma calculadora científica simples em Python (`Calculadora.py`) que contém defeitos. O trabalho consiste em encontrar esses defeitos, relatá-los e corrigir um deles aplicando TDD, com todo o processo versionado no Git.
 
